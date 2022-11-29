@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/subtitulo_uno"
+            android:title="Material Desing">
+            <menu>
+                <item
+                    android:id="@+id/constraint_layout"
+                    android:icon="@drawable/ic_baseline_description_24"
+                    android:title="@string/constraint_layout"/>
+                <item
+                    android:id="@+id/nestedscrollview"
+                    android:icon="@drawable/ic_baseline_description_24"
+                    android:title="@string/nestedscrollview" />
+                <item
+                    android:id="@+id/collapsing"
+                    android:icon="@drawable/ic_baseline_description_24"
+                    android:title="@string/collapsingtoolbarlayout" />
+                <item
+                android:id="@+id/recycler"
+                android:icon="@drawable/ic_baseline_recycling_24"
+                android:title="@string/RecyclerView" />
+                <item
+                    android:id="@+id/sound"
+                    android:icon="@drawable/ic_baseline_surround_sound_24"
+                    android:title="@string/Sound" />
+                <item
+                    android:id="@+id/video"
+                    android:icon="@drawable/ic_baseline_ondemand_video_24"
+                    android:title="@string/video" />
+
+            </menu>
+        </item>
+    </group>
+</menu>
