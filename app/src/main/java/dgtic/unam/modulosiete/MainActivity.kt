@@ -1,24 +1,61 @@
 package dgtic.unam.modulosiete
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import dgtic.unam.modulosiete.activities.*
+import dgtic.unam.modulosiete.databinding.ActivityMainBinding
+import org.json.JSONObject
+
+enum class TipoProvedor {
+    CORREO,
+    GOOGLE,
+    FACEBOOK
+}
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+
+    private lateinit var binding: ActivityMainBinding
     private lateinit var drawer: DrawerLayout
+
+    private lateinit var email: String
+    private lateinit var provedor: String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //datos que manda la actividad
+        var bundle: Bundle? = intent.extras
+        email = bundle?.getString("email").toString()
+        provedor = bundle?.getString("provedor").toString()
+
+        //GUARDAR DATOS SESION
+        val preferencias =
+            getSharedPreferences(getString(R.string.file_preferencia), Context.MODE_PRIVATE).edit()
+        preferencias.putString("email", email)
+        preferencias.putString("provedor", provedor)
+        preferencias.apply()
+
         inicioToolsBar()
+
     }
 
     private fun inicioToolsBar() {
@@ -60,8 +97,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.video -> {
                 startActivity(Intent(this, VideoActivity::class.java))
             }
+            R.id.perfil -> {
+                var pasos: Intent = Intent(this, CloseActivity::class.java).apply {
+                    putExtra("email", email)
+                    putExtra("provedor", provedor)
+                }
+                startActivity(pasos)
+            }
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
+
+
 }

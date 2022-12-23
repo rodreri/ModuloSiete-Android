@@ -32,6 +32,11 @@
                     android:icon="@drawable/ic_baseline_ondemand_video_24"
                     android:title="@string/video" />
 
+                <item
+                    android:id="@+id/perfil"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    android:title="Perfil" />
+
             </menu>
         </item>
     </group>

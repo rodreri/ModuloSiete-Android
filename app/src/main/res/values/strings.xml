@@ -76,5 +76,7 @@
     <string name="video">VideoLayout</string>
     <string name="imagen_pelicula">Imagen Pelicula</string>
 
+    <string name="file_preferencia">mx.erick.autentifiacion.PREFERENCE_FILE_KEY</string>
+
 
 </resources>
